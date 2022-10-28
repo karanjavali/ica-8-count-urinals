@@ -44,7 +44,6 @@ public class urinals {
                 }
             }
             else {
-                numUrinals++;
                 prevZero = false;
             }
         }
