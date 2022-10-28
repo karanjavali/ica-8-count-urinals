@@ -4,6 +4,9 @@
  * ASU ID - 1225469752
  */
 
+import java.io.*;
+import java.util.ArrayList;
+
 public class urinals {
     Boolean goodString( String str ) { // checks to see if valid string
 
@@ -23,6 +26,18 @@ public class urinals {
             }
         }
         return true;
+    }
+
+    void writeToFile(File fileName, ArrayList<Integer> outputs) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
+
+        for (int i = 0; i < outputs.size(); i++) {
+            writer.write(Integer.toString(outputs.get(i)));
+            writer.newLine();
+        }
+
+        writer.close();
     }
 
     int numberOfUrinals(String str) {

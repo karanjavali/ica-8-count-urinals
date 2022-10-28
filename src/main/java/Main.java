@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -24,13 +25,16 @@ public class Main {
                 String path = new File("src/main/java/urinal.dat").getAbsolutePath();
                 File file = new File(path);
                 Scanner sc = new Scanner(file);
+
+                ArrayList<Integer> outputs = new ArrayList<Integer>();
                 while(sc.hasNextLine()){
-                    System.out.println(obj.numberOfUrinals(sc.nextLine()));
+                    outputs.add(obj.numberOfUrinals(sc.nextLine()));
                 }
                 String completePath = "src/main/java/";
                 File myObj = new File(completePath+"rule.txt");
                 if (myObj.createNewFile()) {
                     System.out.println("File created: " + myObj.getName());
+                    obj.writeToFile(myObj,outputs);
                 } else {
                     // create rule1.txt or rule2.txt .....
                     String fileName = "rule";
@@ -38,6 +42,8 @@ public class Main {
                     while(true) {
                         File newFile = new File(completePath+fileName+ i +".txt");
                         if (newFile.createNewFile()) {
+                            System.out.println("File created: " + newFile.getName());
+                            obj.writeToFile(newFile,outputs);
                             break;
                         }
                         else {
