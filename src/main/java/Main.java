@@ -30,27 +30,12 @@ public class Main {
                 while(sc.hasNextLine()){
                     outputs.add(obj.numberOfUrinals(sc.nextLine()));
                 }
-                String completePath = "src/main/java/";
-                File myObj = new File(completePath+"rule.txt");
-                if (myObj.createNewFile()) {
-                    System.out.println("File created: " + myObj.getName());
-                    obj.writeToFile(myObj,outputs);
-                } else {
-                    // create rule1.txt or rule2.txt .....
-                    String fileName = "rule";
-                    int i = 1;
-                    while(true) {
-                        File newFile = new File(completePath+fileName+ i +".txt");
-                        if (newFile.createNewFile()) {
-                            System.out.println("File created: " + newFile.getName());
-                            obj.writeToFile(newFile,outputs);
-                            break;
-                        }
-                        else {
-                            i++;
-                        }
-                    }
-                }
+
+                // create txt file
+                File createdFile = obj.getFile();
+                // write output to txt file
+                obj.writeToFile(createdFile,outputs);
+
                 break;
 
             case 2:
